@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div>
-      <section class="d-sm-none d-lg-block section-3">
+      <section id="ust" class="d-sm-none d-lg-block section-3">
         <div class="perde"></div>
       </section>
       <section class="d-lg-none d-sm-block section-4">
@@ -446,10 +446,10 @@
         </div>
       </div>
     </div>
-    <div class="go-ust">
-      <a href="#ust" style="color: deepskyblue; outline: none;">
-        <vs-button radius color="danger" type="gradient" icon="keyboard_arrow_up"></vs-button>
-      </a>
+    <div class="up-button">
+      <b-button pill href="#ust" variant="danger">
+        <b-icon icon="chevron-up" animation="cylon-vertical" aria-hidden="true"></b-icon>
+      </b-button>
     </div>
   </div>
 </template>
@@ -605,10 +605,16 @@ delay: 1000
   -moz-osx-font-smoothing: grayscale;
 }
 
+.up-button {
+  position: fixed;
+  bottom: 30px;
+  right: 27px;
+}
+
 .section-3 {
   position: absolute;
   width: 100%;
-  height: 70vh;
+  height: 500px;
   overflow: hidden;
   background: url(./img/asil.png);
   background-size: cover;
@@ -622,7 +628,7 @@ delay: 1000
 .section-4 {
   position: absolute;
   width: 100%;
-  height: 70vh;
+  height: 500px;
   overflow: hidden;
   background: url(./img/kucuk.png);
   background-size: cover;
