@@ -42,7 +42,7 @@
               Sitenin Bütün Kodlarına
               <a
                 style="text-decoration: underline; color: deeppink;"
-                href="https://github.com/fesa6654/sefa-web"
+                href="https://github.com/fesa6654/sefaun.com-nuxt"
                 target="_blank"
               >Github</a>'dan Ulaşabilirsiniz.
             </p>
