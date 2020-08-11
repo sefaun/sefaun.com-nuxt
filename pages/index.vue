@@ -46,6 +46,10 @@
                 target="_blank"
               >Github</a>'dan Ulaşabilirsiniz.
             </p>
+            <p class="ziyaret">
+              Site Ziyaret Sayisi:
+              <a style="color: deeppink;">{{ziyaretci_sayisi}}</a>
+            </p>
           </div>
         </div>
       </div>
@@ -456,6 +460,7 @@
 
 <script>
 import mailgonder from "../servisler/email";
+import ziyaret from "../servisler/ziyaretciler";
 
 export default {
   data() {
@@ -466,6 +471,7 @@ export default {
         eposta: "",
         icerik: "",
       },
+      ziyaretci_sayisi: "",
     };
   },
   computed: {},
@@ -538,6 +544,18 @@ delay: 1000
   },
 
   methods: {
+    ziyaretcileri_cagir() {
+      ziyaret
+        .getziyaretci()
+        .then((response) => {
+          response.data.forEach((element) => {
+            this.ziyaretci_sayisi = element.ziyaretciler;
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     mail_gonder() {
       if (
         this.mailinfo.isim != "" &&
@@ -548,7 +566,6 @@ delay: 1000
         mailgonder
           .addemail(this.mailinfo)
           .then((response) => {
-            this.eposta();
             this.$store.commit("loading", "none");
             this.bildirimler(
               "Mail Başarıyla Gönderildi !",
@@ -560,6 +577,9 @@ delay: 1000
               "b-toaster-top-center",
               "success"
             );
+            this.mailinfo.isim = "";
+            this.mailinfo.eposta = "";
+            this.mailinfo.icerik = "";
           })
           .catch((err) => {
             this.$store.commit("loading", "none");
@@ -579,12 +599,6 @@ delay: 1000
         );
       }
     },
-    eposta() {
-      mailgonder
-        .getemail()
-        .then((response) => {})
-        .catch((err) => {});
-    },
     bildirimler(bildirim, aciklama, konum, renk) {
       this.$bvToast.toast(aciklama, {
         title: bildirim,
@@ -594,7 +608,9 @@ delay: 1000
       });
     },
   },
-  created() {},
+  created() {
+    this.ziyaretcileri_cagir();
+  },
 };
 </script>
 
@@ -760,6 +776,13 @@ delay: 1000
 }
 
 .ulas {
+  position: relative;
+  z-index: 5000000;
+  color: deepskyblue;
+  font-size: 16px;
+}
+
+.ziyaret {
   position: relative;
   z-index: 5000000;
   color: deepskyblue;

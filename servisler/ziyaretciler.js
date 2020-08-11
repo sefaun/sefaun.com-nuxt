@@ -7,7 +7,7 @@ const apiClient = axios.create({
 })
 
 export default {
-    addemail(obj) {
-        return apiClient.post(`/email/addemail`, obj)
+    getziyaretci() {
+        return apiClient.get('/ziyaretci/ziyaretci_info')
     }
 }
